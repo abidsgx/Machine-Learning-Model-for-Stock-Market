@@ -7,9 +7,13 @@ from sklearnex import patch_sklearn
 from sklearn.metrics import accuracy_score, log_loss
 import joblib
 
+# Write the name of your .csv file containing the time series data (include .csv)
+
+csv = ''
+
 # --- 1. Load and prepare data ---
 def load_data():
-    df = pd.read_csv('1min_stock_data.csv')
+    df = pd.read_csv(csv)
 
     # Log returns from close prices
     close = df['Close'].to_numpy()
@@ -24,9 +28,8 @@ def load_data():
     low_series = pd.Series(df['Low'].to_numpy())
     log_volume = np.log1p(df['Volume'].to_numpy())
 
-
     # Feature Engineering
-    
+
     # Lags (past values only)
     lag1 = log_series.shift(1)
     lag2 = log_series.shift(2)
@@ -57,6 +60,7 @@ def load_data():
     df_features.dropna(inplace=True)  # drops first 2 rows, keeps row 2 onward
     return df_features
 
+
 # --- 2. Extract features and target ---
 def extract(df_features=load_data()):
     X = df_features[['log_series', 'log_volume', 'diff_high', 'diff_low',
@@ -67,6 +71,7 @@ def extract(df_features=load_data()):
     split = int(0.8 * len(X))
     np.save('split.npy', split)  # save for backtest alignment
     return X, y, binary_y, split
+
 
 # --- 3. Main training & streaming loop ---
 def main():
@@ -138,7 +143,6 @@ def main():
     # Save the final updated model
     joblib.dump(model, 'model_updated.pkl')
 
-
     # Evaluation
     acc = accuracy_score(true_vals, predictions)
     logloss = log_loss(true_vals, probabilities)
@@ -156,6 +160,7 @@ def main():
         'Probabilities': probabilities
     }
     pd.DataFrame(metrics).to_csv('metrics.csv', index=False)
+
 
 if __name__ == '__main__':
     main()
