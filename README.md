@@ -1,10 +1,12 @@
-# Machine-Learning-Models-for-Stock-Market
+# Machine-Learning-Model-for-Stock-Market-Price-Prediction
+
+<img width="1366" height="647" alt="Model_Performance" src="https://github.com/user-attachments/assets/47289ccb-b947-4261-866c-2a4bfa6defda" />
 
 <img width="1350" height="583" alt="newplot" src="https://github.com/user-attachments/assets/aaf23e12-6947-40b2-be83-61093d5b19ec" />
 
-Do Not Use These for Trading!
+Do Not Use This for Trading!
 
-This repository contains a classification model (SGDClassifier) that can be trained and evaluated on time series stock data. It also includes a backtesting script that will allow you to visualise the models performance.
+This repository contains a classification model (SGDClassifier) that can be trained and evaluated on time series stock data. The performance can be visualised through 4 different plots including a confusion matrix, learning curve, feature weights chart, and a loss curve. It also includes a backtesting script that will allow you to visualise the models simulated trading performance.
 
 ## Data Format
 The stock data should be in a csv format and should have the Open, High, Low, Close, and Volume columns.
