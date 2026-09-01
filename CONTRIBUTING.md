@@ -1,4 +1,4 @@
-# Contributing to CONTRIBUTING.md
+# Contributing
 
 This project is in its early stages so all contibutions are really appreciated!
 
